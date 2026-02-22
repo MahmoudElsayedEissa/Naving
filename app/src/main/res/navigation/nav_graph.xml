@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <action
+        android:id="@+id/action_global_to_login"
+        app:destination="@id/login_graph"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right" />
+
+    <action
+        android:id="@+id/action_global_to_profile"
+        app:destination="@id/settings_graph"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right" />
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.naving.HomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home">
+
+        <action
+            android:id="@+id/action_home_to_detail"
+            app:destination="@id/detailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+        <action
+            android:id="@+id/action_home_to_confirm"
+            app:destination="@id/confirmDialog" />
+
+        <deepLink app:uri="naving://home" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.example.naving.DetailFragment"
+        android:label="Detail"
+        tools:layout="@layout/fragment_detail">
+
+        <argument
+            android:name="itemId"
+            app:argType="integer" />
+
+        <argument
+            android:name="itemName"
+            app:argType="string" />
+
+        <argument
+            android:name="price"
+            app:argType="float"
+            android:defaultValue="0.0" />
+
+        <argument
+            android:name="category"
+            app:argType="com.example.naving.ProductCategory"
+            android:defaultValue="ELECTRONICS" />
+
+        <deepLink app:uri="naving://detail/{itemId}/{itemName}" />
+    </fragment>
+
+    <navigation
+        android:id="@+id/login_graph"
+        app:startDestination="@id/loginFragment">
+
+        <fragment
+            android:id="@+id/loginFragment"
+            android:name="com.example.naving.LoginFragment"
+            android:label="Login"
+            tools:layout="@layout/fragment_login">
+
+            <action
+                android:id="@+id/action_login_to_signup"
+                app:destination="@id/signUpFragment"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right" />
+
+            <action
+                android:id="@+id/action_login_to_home"
+                app:destination="@id/homeFragment"
+                app:popUpTo="@id/homeFragment"
+                app:popUpToInclusive="true"
+                app:launchSingleTop="true" />
+        </fragment>
+
+        <fragment
+            android:id="@+id/signUpFragment"
+            android:name="com.example.naving.SignUpFragment"
+            android:label="Sign Up"
+            tools:layout="@layout/fragment_sign_up">
+
+            <action
+                android:id="@+id/action_signup_to_login"
+                app:destination="@id/loginFragment"
+                app:popUpTo="@id/loginFragment"
+                app:popUpToInclusive="true"
+                app:launchSingleTop="true" />
+        </fragment>
+
+    </navigation>
+
+    <dialog
+        android:id="@+id/confirmDialog"
+        android:name="com.example.naving.ConfirmDialogFragment"
+        android:label="Confirm">
+
+        <argument
+            android:name="message"
+            app:argType="string" />
+    </dialog>
+
+    <include app:graph="@navigation/settings_graph" />
+
+</navigation>

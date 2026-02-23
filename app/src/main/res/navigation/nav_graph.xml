@@ -123,4 +123,20 @@
 
     <include app:graph="@navigation/settings_graph" />
 
+    <!-- Way 7: profileFragment directly in root graph — reachable from ANY fragment -->
+    <fragment
+        android:id="@+id/profileFragmentDirect"
+        android:name="com.example.naving.ProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_profile">
+
+        <argument
+            android:name="userId"
+            app:argType="integer" />
+
+        <argument
+            android:name="userName"
+            app:argType="string" />
+    </fragment>
+
 </navigation>

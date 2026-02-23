@@ -58,6 +58,7 @@ class DetailFragment : Fragment() {
         view.findViewById<Button>(R.id.btnWay4).setOnClickListener { navigateDeepLinkPopUpToHome() }
         view.findViewById<Button>(R.id.btnWay5).setOnClickListener { navigateDoubleNav() }
         view.findViewById<Button>(R.id.btnWay6).setOnClickListener { navigateViaSharedViewModel() }
+        view.findViewById<Button>(R.id.btnWay7).setOnClickListener { navigateDirectRootGraph() }
     }
 
     private fun navigateRouterHack() {
@@ -108,5 +109,11 @@ class DetailFragment : Fragment() {
     private fun navigateViaSharedViewModel() {
         navViewModel.requestNavigation("profile")
         findNavController().navigate(R.id.settings_graph)
+    }
+
+    // Way 7: Direct destination in root graph — simplest approach!
+    private fun navigateDirectRootGraph() {
+        val profileArgs = ProfileFragmentArgs(userId = 42, userName = "ViaDirectRoot").toBundle()
+        findNavController().navigate(R.id.profileFragmentDirect, profileArgs)
     }
 }

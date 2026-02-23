@@ -111,7 +111,6 @@ class DetailFragment : Fragment() {
         findNavController().navigate(R.id.settings_graph)
     }
 
-    // Way 7: Direct destination in root graph — simplest approach!
     private fun navigateDirectRootGraph() {
         val profileArgs = ProfileFragmentArgs(userId = 42, userName = "ViaDirectRoot").toBundle()
         findNavController().navigate(R.id.profileFragmentDirect, profileArgs)

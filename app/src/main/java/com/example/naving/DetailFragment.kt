@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.core.net.toUri
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
@@ -17,6 +18,7 @@ import androidx.navigation.fragment.navArgs
 class DetailFragment : Fragment() {
 
     private val args: DetailFragmentArgs by navArgs()
+    private val navViewModel: NavigationViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -54,6 +56,8 @@ class DetailFragment : Fragment() {
         view.findViewById<Button>(R.id.btnWay2).setOnClickListener { navigateRouterHackPopUpToHome() }
         view.findViewById<Button>(R.id.btnWay3).setOnClickListener { navigateDeepLink() }
         view.findViewById<Button>(R.id.btnWay4).setOnClickListener { navigateDeepLinkPopUpToHome() }
+        view.findViewById<Button>(R.id.btnWay5).setOnClickListener { navigateDoubleNav() }
+        view.findViewById<Button>(R.id.btnWay6).setOnClickListener { navigateViaSharedViewModel() }
     }
 
     private fun navigateRouterHack() {
@@ -87,5 +91,22 @@ class DetailFragment : Fragment() {
                 .setPopUpTo(R.id.homeFragment, inclusive = false)
                 .build()
         )
+    }
+
+    private fun navigateDoubleNav() {
+        val profileArgs = ProfileFragmentArgs(userId = 42, userName = "ViaDoubleNav").toBundle()
+        findNavController().navigate(R.id.settings_graph)
+        findNavController().navigate(
+            R.id.profileFragment,
+            profileArgs,
+            NavOptions.Builder()
+                .setPopUpTo(R.id.settingsMainFragment, inclusive = true)
+                .build()
+        )
+    }
+
+    private fun navigateViaSharedViewModel() {
+        navViewModel.requestNavigation("profile")
+        findNavController().navigate(R.id.settings_graph)
     }
 }

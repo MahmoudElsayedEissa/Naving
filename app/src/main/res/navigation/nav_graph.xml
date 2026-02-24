@@ -21,6 +21,12 @@
         app:popEnterAnim="@anim/slide_in_left"
         app:popExitAnim="@anim/slide_out_right" />
 
+    <action
+        android:id="@+id/action_global_to_profile_direct"
+        app:destination="@id/profileFragmentDirect"
+        app:popUpTo="@id/homeFragment"
+        app:popUpToInclusive="false" />
+
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.naving.HomeFragment"
@@ -123,7 +129,6 @@
 
     <include app:graph="@navigation/settings_graph" />
 
-    <!-- Way 7: profileFragment directly in root graph — reachable from ANY fragment -->
     <fragment
         android:id="@+id/profileFragmentDirect"
         android:name="com.example.naving.ProfileFragment"

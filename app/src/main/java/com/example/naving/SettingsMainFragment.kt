@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import androidx.core.os.bundleOf
+
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavOptions
@@ -23,41 +23,10 @@ class SettingsMainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if (handleRouting()) return
         observeSharedViewModelRouting()
         setupProfileButton(view)
     }
 
-    private fun handleRouting(): Boolean {
-        val target = arguments?.getString("targetDestination") ?: "main"
-        val profileArgs = ProfileFragmentArgs(userId = 42, userName = "ViaRouter").toBundle()
-
-        return when (target) {
-            "profile" -> {
-                arguments?.putString("targetDestination", "main")
-                findNavController().navigate(
-                    R.id.profileFragment,
-                    profileArgs,
-                    NavOptions.Builder()
-                        .setPopUpTo(R.id.settingsMainFragment, inclusive = true)
-                        .build()
-                )
-                true
-            }
-            "profile_popup_home" -> {
-                arguments?.putString("targetDestination", "main")
-                findNavController().navigate(
-                    R.id.profileFragment,
-                    profileArgs,
-                    NavOptions.Builder()
-                        .setPopUpTo(R.id.homeFragment, inclusive = false)
-                        .build()
-                )
-                true
-            }
-            else -> false
-        }
-    }
 
     private fun observeSharedViewModelRouting() {
         navViewModel.navigateTo.observe(viewLifecycleOwner) { destination ->

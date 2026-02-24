@@ -36,7 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="── Global Action ──"
+            android:text="── Double Navigate (Global Action) ──"
             android:textSize="14sp"
             android:textStyle="bold" />
 
@@ -45,14 +45,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Way 1: Router Hack (Back → Detail)" />
+            android:text="Way 1: Double Nav + Global Action (Back → Detail)" />
 
         <Button
             android:id="@+id/btnWay2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Way 2: Router Hack + popUpTo (Back → Home)" />
+            android:text="Way 2: Double Nav + Global Action (Back → Home)" />
 
         <TextView
             android:layout_width="wrap_content"

@@ -5,25 +5,23 @@
     android:id="@+id/settings_graph"
     app:startDestination="@id/settingsMainFragment">
 
+    <action
+        android:id="@+id/action_settings_to_profile"
+        app:destination="@id/profileFragment"
+        app:popUpTo="@id/settingsMainFragment"
+        app:popUpToInclusive="true" />
+
+    <action
+        android:id="@+id/action_settings_to_profile_popup_home"
+        app:destination="@id/profileFragment"
+        app:popUpTo="@id/homeFragment"
+        app:popUpToInclusive="false" />
+
     <fragment
         android:id="@+id/settingsMainFragment"
         android:name="com.example.naving.SettingsMainFragment"
         android:label="Settings"
-        tools:layout="@layout/fragment_settings_main">
-
-        <argument
-            android:name="targetDestination"
-            app:argType="string"
-            android:defaultValue="main" />
-
-        <action
-            android:id="@+id/action_settings_to_profile"
-            app:destination="@id/profileFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
-    </fragment>
+        tools:layout="@layout/fragment_settings_main" />
 
     <fragment
         android:id="@+id/profileFragment"

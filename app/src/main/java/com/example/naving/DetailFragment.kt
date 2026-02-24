@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.core.net.toUri
-import androidx.core.os.bundleOf
+
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavDeepLinkRequest
@@ -52,8 +52,8 @@ class DetailFragment : Fragment() {
     }
 
     private fun setupNavigationButtons(view: View) {
-        view.findViewById<Button>(R.id.btnWay1).setOnClickListener { navigateRouterHack() }
-        view.findViewById<Button>(R.id.btnWay2).setOnClickListener { navigateRouterHackPopUpToHome() }
+        view.findViewById<Button>(R.id.btnWay1).setOnClickListener { navigateDoubleNavGlobal() }
+        view.findViewById<Button>(R.id.btnWay2).setOnClickListener { navigateDoubleNavGlobalPopUpToHome() }
         view.findViewById<Button>(R.id.btnWay3).setOnClickListener { navigateDeepLink() }
         view.findViewById<Button>(R.id.btnWay4).setOnClickListener { navigateDeepLinkPopUpToHome() }
         view.findViewById<Button>(R.id.btnWay5).setOnClickListener { navigateDoubleNav() }
@@ -61,18 +61,16 @@ class DetailFragment : Fragment() {
         view.findViewById<Button>(R.id.btnWay7).setOnClickListener { navigateDirectRootGraph() }
     }
 
-    private fun navigateRouterHack() {
-        findNavController().navigate(
-            R.id.action_global_to_profile,
-            bundleOf("targetDestination" to "profile")
-        )
+    private fun navigateDoubleNavGlobal() {
+        val profileArgs = ProfileFragmentArgs(userId = 42, userName = "ViaDoubleNavGlobal").toBundle()
+        findNavController().navigate(R.id.action_global_to_profile)
+        findNavController().navigate(R.id.action_settings_to_profile, profileArgs)
     }
 
-    private fun navigateRouterHackPopUpToHome() {
-        findNavController().navigate(
-            R.id.action_global_to_profile,
-            bundleOf("targetDestination" to "profile_popup_home")
-        )
+    private fun navigateDoubleNavGlobalPopUpToHome() {
+        val profileArgs = ProfileFragmentArgs(userId = 42, userName = "ViaDoubleNavGlobalPopUp").toBundle()
+        findNavController().navigate(R.id.action_global_to_profile)
+        findNavController().navigate(R.id.action_settings_to_profile_popup_home, profileArgs)
     }
 
     private fun navigateDeepLink() {
@@ -112,7 +110,7 @@ class DetailFragment : Fragment() {
     }
 
     private fun navigateDirectRootGraph() {
-        val profileArgs = ProfileFragmentArgs(userId = 42, userName = "ViaDirectRoot").toBundle()
-        findNavController().navigate(R.id.profileFragmentDirect, profileArgs)
+        val profileArgs = ProfileFragmentArgs(userId = 42, userName = "ViaGlobalAction").toBundle()
+        findNavController().navigate(R.id.action_global_to_profile_direct, profileArgs)
     }
 }

@@ -1,4 +1,4 @@
-package com.example.naving
+package com.example.naving.navigation
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

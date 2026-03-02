@@ -2,6 +2,7 @@ package com.example.naving.rx.presentation.ui.request_detail
 
 import androidx.lifecycle.ViewModel
 import com.example.naving.rx.domain.usecase.ConfirmRequestUseCase
+import com.example.naving.rx.domain.usecase.GetMarketCategoriesUseCase
 import com.example.naving.rx.domain.usecase.GetRequestDetailsUseCase
 import com.example.naving.rx.schedule.SchedulerProvider
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,6 +15,7 @@ import javax.inject.Inject
 class RequestDetailViewModel @Inject constructor(
     private val getRequestDetailsUseCase: GetRequestDetailsUseCase,
     private val confirmRequestUseCase: ConfirmRequestUseCase,
+    private val getMarketCategoriesUseCase: GetMarketCategoriesUseCase,
     private val schedulerProvider: SchedulerProvider
 ) : ViewModel() {
 
@@ -21,21 +23,12 @@ class RequestDetailViewModel @Inject constructor(
     val uiState: Observable<RequestDetailUiState> = _uiState.hide()
 
     private val disposables = CompositeDisposable()
-    private var currentRequestId: String = ""
 
-    fun onAction(action: RequestDetailAction) {
-        when (action) {
-            is RequestDetailAction.LoadDetails -> loadRequestDetails(action.requestId)
-            is RequestDetailAction.ConfirmRequest -> confirmRequest(action.requestId)
-            is RequestDetailAction.Retry -> loadRequestDetails(currentRequestId)
-        }
-    }
 
-    private fun loadRequestDetails(requestId: String) {
-        currentRequestId = requestId
+    fun loadMarketCategories(marketSelectedCity: String?, marketSelectedArea: String?) {
         _uiState.onNext(RequestDetailUiState.Loading)
 
-        val disposable = getRequestDetailsUseCase(requestId)
+        val disposable = getMarketCategoriesUseCase(marketSelectedCity,marketSelectedArea)
             .observeOn(schedulerProvider.main())
             .subscribe(
                 { domainModel ->
@@ -52,7 +45,7 @@ class RequestDetailViewModel @Inject constructor(
         disposables.add(disposable)
     }
 
-    private fun confirmRequest(requestId: String) {
+    fun confirmRequest(requestId: String) {
         _uiState.onNext(RequestDetailUiState.Loading)
 
         val disposable = confirmRequestUseCase(requestId)

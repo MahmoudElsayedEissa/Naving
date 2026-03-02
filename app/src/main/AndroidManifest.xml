@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Naving">
         <activity
-            android:name=".MainActivity"
+            android:name=".rx.presentation.RequestDetailActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,10 +25,7 @@
             <nav-graph android:value="@navigation/nav_graph" />
         </activity>
 
-        <!-- Compose-based Clean Architecture example screen -->
-        <activity
-            android:name=".rx.presentation.RequestDetailActivity"
-            android:exported="false" />
+
     </application>
 
 </manifest>

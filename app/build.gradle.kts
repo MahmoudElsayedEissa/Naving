@@ -5,6 +5,8 @@ plugins {
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt.android)
     alias(libs.plugins.androidx.navigation.safeargs.kotlin)
+    kotlin("plugin.serialization")
+
 }
 
 android {
@@ -20,7 +22,7 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
-        buildConfigField("String", "BASE_URL", "\"https://api-dev.halan.io\"")
+        buildConfigField("String", "BASE_URL", "\"https://api-test.halan.io\"")
     }
 
     buildTypes {
@@ -78,7 +80,9 @@ dependencies {
     implementation(libs.converter.gson)
     implementation(libs.logging.interceptor)
     implementation(libs.adapter.rxjava3)
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0") // Use the latest version
 
+    implementation("io.coil-kt:coil-compose:2.6.0")
     // Hilt
     implementation(libs.dagger.hilt.android)
     ksp(libs.dagger.hilt.compiler)

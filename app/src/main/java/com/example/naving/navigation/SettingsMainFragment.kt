@@ -1,4 +1,4 @@
-package com.example.naving
+package com.example.naving.navigation
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
+import com.example.naving.R
 
 class SettingsMainFragment : Fragment() {
 
@@ -45,7 +46,7 @@ class SettingsMainFragment : Fragment() {
     private fun setupProfileButton(view: View) {
         view.findViewById<Button>(R.id.btnGoToProfile).setOnClickListener {
             findNavController().navigate(
-                SettingsMainFragmentDirections.actionSettingsToProfile(
+                SettingsMainFragmentDirections.Companion.actionSettingsToProfile(
                     userId = 1,
                     userName = "Mahmoud"
                 )

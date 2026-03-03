@@ -1,4 +1,4 @@
-package com.example.naving
+package com.example.naving.navigation
 
 import android.app.Dialog
 import android.os.Bundle

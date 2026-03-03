@@ -1,4 +1,4 @@
-package com.example.naving
+package com.example.naving.navigation
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
+import com.example.naving.R
 
 class LoginFragment : Fragment() {
 

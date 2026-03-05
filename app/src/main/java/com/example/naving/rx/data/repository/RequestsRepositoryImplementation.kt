@@ -21,11 +21,17 @@ class RequestsRepositoryImplementation @Inject constructor(
     override fun getRequestDetails(requestId: String): Single<SingleRequestDomainModel> =
         service.getRequestDetails(requestId)
             .map { SingleRequestDomainMapper.mapToDomain(it.data) }
+            .onErrorResumeNext {
+                Single.error(it)
+            }
             .subscribeOn(schedulerProvider.io())
 
     override fun initializeRequest(body: InitializeRequestDomainBody): Single<SingleRequestDomainModel> =
         service.initializeRequest(InitializeRequestBodyDomainMapper.mapBodyToRemote(body))
             .map { SingleRequestDomainMapper.mapToDomain(it.data) }
+            .onErrorResumeNext {
+                Single.error(it)
+            }
             .subscribeOn(schedulerProvider.io())
 
     override fun confirmRequest(requestId: String): Completable =
@@ -39,8 +45,11 @@ class RequestsRepositoryImplementation @Inject constructor(
         service.getMarketCategories()
             .map { response ->
                 response.data.items.categories.map { categorySection ->
-                    CategoryDomainDataMapper.map(categorySection)
+                    CategoryDomainDataMapper.mapToDomain(categorySection)
                 }
             }
-            .subscribeOn(schedulerProvider.computation())
+            .onErrorResumeNext {
+                Single.error(it)
+            }
+            .subscribeOn(schedulerProvider.io())
 }

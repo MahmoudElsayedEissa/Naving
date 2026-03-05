@@ -13,19 +13,4 @@ data class CategorySectionResponse(
     val nameEn: String
 )
 
-data class CategoryItemsWrapper(
-    val categories: List<CategorySectionResponse>,
-    val products: List<Any>
-)
 
-data class CategoryDataResponse(
-    val categoryId: Int,
-    val categoryName: String,
-    val categoryNameAr: String,
-    val items: CategoryItemsWrapper,
-    @SerializedName("is_recommendation")
-    val isRecommendation: Boolean,
-    @SerializedName("is_talabeyah")
-    val isTalabeyah: Boolean,
-    val type: String
-)

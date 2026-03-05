@@ -1,6 +1,6 @@
 package com.example.naving.rx.data.model
 
-data class InitializeRequestBody(
+data class InitializeRemoteRequestBody(
     val requestType: String,
     val requestData: InitializeRequestInfoBody,
 )

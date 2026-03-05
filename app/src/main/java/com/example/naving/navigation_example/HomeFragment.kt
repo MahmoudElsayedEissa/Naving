@@ -1,4 +1,4 @@
-package com.example.naving.navigation
+package com.example.naving.navigation_example
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -69,7 +69,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun navigateToDetail() {
-        val action = HomeFragmentDirections.Companion.actionHomeToDetail(
+        val action = HomeFragmentDirections.actionHomeToDetail(
             itemId = 42,
             itemName = "Laptop",
             price = 999.99f,
@@ -79,7 +79,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun navigateToConfirmDialog() {
-        val action = HomeFragmentDirections.Companion.actionHomeToConfirm(
+        val action = HomeFragmentDirections.actionHomeToConfirm(
             message = "Are you sure you want to proceed?"
         )
         findNavController().navigate(action)
@@ -87,7 +87,7 @@ class HomeFragment : Fragment() {
 
     private fun navigateToProtectedScreen() {
         if (AuthState.isLoggedIn) {
-            val action = HomeFragmentDirections.Companion.actionHomeToDetail(
+            val action = HomeFragmentDirections.actionHomeToDetail(
                 itemId = 99,
                 itemName = "Protected Item",
                 price = 0f,

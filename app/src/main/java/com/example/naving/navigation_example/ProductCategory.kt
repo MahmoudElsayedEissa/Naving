@@ -1,4 +1,4 @@
-package com.example.naving.navigation
+package com.example.naving.navigation_example
 
 enum class ProductCategory {
     ELECTRONICS,

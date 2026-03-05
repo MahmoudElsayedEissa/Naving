@@ -1,4 +1,4 @@
-package com.example.naving
+package com.example.naving.navigation_example
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,6 +14,7 @@ import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.example.naving.R
 
 class DetailFragment : Fragment() {
 

@@ -1,4 +1,4 @@
-package com.example.naving
+package com.example.naving.navigation_example
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -14,6 +14,8 @@ import androidx.core.app.NotificationCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavDeepLinkBuilder
 import androidx.navigation.fragment.findNavController
+import com.example.naving.MainActivity
+import com.example.naving.R
 
 class HomeFragment : Fragment() {
 

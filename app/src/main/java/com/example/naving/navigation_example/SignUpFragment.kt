@@ -1,4 +1,4 @@
-package com.example.naving
+package com.example.naving.navigation_example
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,6 +8,7 @@ import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
+import com.example.naving.R
 
 class SignUpFragment : Fragment() {
 
